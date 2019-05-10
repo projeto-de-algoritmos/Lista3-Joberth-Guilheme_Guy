@@ -1,0 +1,11 @@
+# Byte-compiled / optimized / DLL files
+
+src/__pycache__/
+*.py[cod]
+
+*.txt
+*.pyc
+
+*.log
+*.spec
+

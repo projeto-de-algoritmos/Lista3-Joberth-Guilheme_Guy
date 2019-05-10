@@ -32,10 +32,12 @@ class Application:
         self.container4 = tk.Frame(
             master, background="white", width=self.width_screen - 20, height=200)
         self.container4.pack()
-        self.log = tk.Label(self.container4, background="white", justify=tk.LEFT)
+        self.log = tk.Label(
+            self.container4, background="white", justify=tk.LEFT)
         self.log["font"] = ("Heveltica", "14", "bold")
         self.log.pack(side=tk.TOP, padx="30", pady="10", anchor=tk.NW)
-        self.resume = tk.Label(self.container4, background="white",justify=tk.LEFT)
+        self.resume = tk.Label(
+            self.container4, background="white", justify=tk.LEFT)
         self.resume["font"] = ("Heveltica", "12")
         self.resume.pack(side=tk.LEFT, padx="30", pady="5", anchor=tk.NW)
 
@@ -62,7 +64,7 @@ class Application:
             file_dencode = open(os.path.basename(file.name)[
                                 0: -4]+"_dencoded.txt", "w+")
             file_dencode.write(dencode.word_decode)
-            
+
             self.log["text"] = "Descompactação realizada com sucesso!!\n" + \
                                 "Verifique o resultado na pasta raiz do projeto."
             self.resume["text"] = ""
@@ -85,16 +87,22 @@ class Application:
 
             self.log["text"] = "Compressão realizada com sucesso!!\n" + \
                                 "Verifique o resultado na pasta raiz do projeto."
+
+            size_compress = len(encodefy.word_encode)
+            current_size = len(encodefy.word)*8
+
             self.resume["text"] = "Tamanho antigo do arquivo: " + \
-                str(len(encodefy.word)*8) + " bits \n" + "Tamanho atual do arquivo: " + \
-                str(len(encodefy.word_encode)) + " bits"
+                str(current_size) + " bits \n" + "Tamanho atual do arquivo: " + \
+                str(size_compress) + " bits\n" + "Taxa de compressão: " + \
+                str("{:.2f}".format((size_compress/current_size)*100)) + "%"
+
 
         file.close()
 
 
 if __name__ == "__main__":
 
-    root = tk.Tk()
+    root=tk.Tk()
     root.title("Winrar FLEX")
     root.geometry("800x400+500+300")
     root.update()
